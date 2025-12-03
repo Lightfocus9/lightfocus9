@@ -1,38 +1,81 @@
+/* =====================
+   LF9 Website Styles
+   ===================== */
+
+/* --- Color Palette --- */
 :root {
-  --primary: #FFCCCC;
-  --background: #000000;
+  --primary: #FFCCCC;   /* Blonde accent */
+  --background: #000000; /* Black background */
   --accent: #FFCCCC;
 }
 
-body {
+/* --- Global Styles --- */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   height: 100vh;
-  overflow: hidden;
+  width: 100vw;
   background: var(--background);
   color: var(--primary);
   font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
-/* 3. Liquid background */
-body::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 30%, #FFCCCC55, #000000 70%);
-  background-size: 200% 200%;
-  animation: liquidMove 15s linear infinite alternate;
-  z-index: -1;
+/* --- Hero Section --- */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 2; /* Above backdrop */
 }
 
-@keyframes liquidMove {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 50% 50%; }
-  100% { background-position: 0% 0%; }
+/* Logo Styling */
+.logo {
+  width: 150px;
+  height: auto;
+  z-index: 2;
 }
 
-/* 4. Scrolling moiré / CRT overlay */
+/* Hero Text Styling */
+.hero-text span {
+  display: block;
+  font-size: 3rem;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+}
+
+/* Sequential text delay */
+.hero-text span:nth-child(1) { animation-delay: 0.3s; }
+.hero-text span:nth-child(2) { animation-delay: 0.6s; }
+.hero-text span:nth-child(3) { animation-delay: 0.9s; }
+
+/* Fade + Move Animation */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Animated Liquid Backdrop --- */
+#backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Optional CRT / Moiré Overlay */
 body::after {
   content: '';
   position: fixed;
@@ -50,7 +93,7 @@ body::after {
   background-size: 50px 50px;
   animation: moireScroll 10s linear infinite;
   pointer-events: none;
-  z-index: 1;
+  z-index: 3; /* Above hero */
 }
 
 @keyframes moireScroll {
@@ -58,69 +101,27 @@ body::after {
   100% { background-position: 100px 100px; }
 }
 
+/* --- Optional: Cursor Interactive Liquid Motion --- */
+body {
+  --mouse-x: 0;
+  --mouse-y: 0;
 }
 
+body::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, #FFCCCC55, #000000 70%);
+  background-size: 200% 200%;
+  animation: liquidMove 15s linear infinite alternate;
+  z-index: -1;
+  transform: translate(var(--mouse-x), var(--mouse-y));
+  transition: transform 0.1s ease-out;
 }
 
+@keyframes liquidMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 50% 50%; }
+  100% { background-position: 0% 0%; }
 }
-
-/* Layout */
-.header{
-  position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;z-index:2000;
-  background:linear-gradient(180deg, rgba(10,11,15,0.45), rgba(10,11,15,0.12));backdrop-filter:blur(8px);
-}
-.header .logo {
-    width: 140px;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-.header nav{display:flex;gap:20px;align-items:center}
-.header a{color:var(--muted);text-decoration:none;font-weight:600;letter-spacing:0.6px}
-.header a:hover{color:var(--accent1)}
-
-/* Hero */
-.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;filter:contrast(1.1) saturate(1.1)}
-#webgl-bg{position:fixed;inset:0;z-index:0}
-.hero-overlay{position:relative;z-index:5;text-align:center;padding:24px;max-width:1200px;}
-.hero h1{font-size:clamp(38px,8vw,96px);margin:0;letter-spacing:6px;font-weight:700;text-transform:uppercase;color:transparent;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text}
-.hero p{margin-top:12px;color:var(--muted);font-size:16px}
-
-/* Glow treatment */
-.glow{position:relative}
-.glow::after{content:"";position:absolute;inset:0;filter:blur(14px);opacity:0.35;background:linear-gradient(90deg,var(--accent1),var(--accent2));z-index:-1}
-
-/* Sections */
-.section{padding:96px 24px;max-width:var(--max-width);margin:0 auto;position:relative;z-index:3}
-.video-wrapper iframe{width:100%;height:520px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--panel)}
-
-/* FAQ */
-.faq-item{padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
-.faq-item h3{margin:0;font-size:18px;color:#fff;cursor:pointer}
-.faq-item p{margin-top:10px;color:var(--muted);line-height:1.6;display:none}
-
-/* Newsletter */
-.newsletter{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
-.newsletter-form{display:flex;width:100%;gap:12px}
-.newsletter input{flex:1;padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff}
-.newsletter button{padding:14px 18px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#000;font-weight:700;cursor:pointer}
-
-/* Footer */
-.footer{padding:40px;text-align:center;color:var(--muted);font-size:14px}
-
-/* Fade-in utility */
-.fade-in{opacity:0;transform:translateY(20px);transition:all 700ms cubic-bezier(.2,.9,.3,1)}
-.fade-in.in{opacity:1;transform:none}
-
-/* Responsive */
-@media (max-width:820px){
-  .header{padding:12px 18px}
-  .header nav{display:none}
-  .hero h1{font-size:36px}
-  .video-wrapper iframe{height:300px}
-}
-
-
-
-
