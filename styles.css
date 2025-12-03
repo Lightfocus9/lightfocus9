@@ -16,6 +16,23 @@ body{
   color: var(--primary);
   font-family: 'Arial', sans-serif;
   position: relative;
+ body::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 30%, #FFCCCC55, #000000 70%);
+  background-size: 200% 200%;
+  animation: liquidMove 15s linear infinite alternate;
+  z-index: -1;
+}
+
+@keyframes liquidMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 50% 50%; }
+  100% { background-position: 0% 0%; }
+}
+
 }
 
 }
@@ -76,5 +93,6 @@ body{
   .hero h1{font-size:36px}
   .video-wrapper iframe{height:300px}
 }
+
 
 
