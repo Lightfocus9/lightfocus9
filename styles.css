@@ -25,7 +25,12 @@ body{
   position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;z-index:2000;
   background:linear-gradient(180deg, rgba(10,11,15,0.45), rgba(10,11,15,0.12));backdrop-filter:blur(8px);
 }
-.header .logo{height:36px;width:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,0.8));}
+.header .logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
 .header nav{display:flex;gap:20px;align-items:center}
 .header a{color:var(--muted);text-decoration:none;font-weight:600;letter-spacing:0.6px}
 .header a:hover{color:var(--accent1)}
@@ -71,3 +76,4 @@ body{
   .hero h1{font-size:36px}
   .video-wrapper iframe{height:300px}
 }
+
