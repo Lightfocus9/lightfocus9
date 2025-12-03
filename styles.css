@@ -1,23 +1,23 @@
 :root{
-  --bg:#020204;
-  --panel:#0a0b0f;
-  --muted:#9aa3b2;
-  --accent1:#00ffd1; /* neon cyan */
-  --accent2:#8a00ff; /* electric purple */
-  --glass: rgba(255,255,255,0.04);
-  --max-width:1100px;
-  --spacing:24px;
+ :root {
+  --primary: #FFCCCC;  /* Blonde accents */
+  --background: #000000;  /* Black background */
+  --accent: #FFCCCC;
+
 }
 
 *{box-sizing:border-box}
 html,body{height:100%;}
 body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  background:var(--bg);
-  color:#fff;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--background);
+  color: var(--primary);
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
 }
 
 /* Layout */
@@ -76,4 +76,5 @@ body{
   .hero h1{font-size:36px}
   .video-wrapper iframe{height:300px}
 }
+
 
