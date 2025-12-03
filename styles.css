@@ -1,15 +1,10 @@
-/* =====================
-   LF9 Website Styles
-   ===================== */
-
-/* --- Color Palette --- */
+/* === Color Palette === */
 :root {
-  --primary: #FFCCCC;   /* Blonde accent */
+  --primary: #FFCCCC; /* Blonde accent */
   --background: #000000; /* Black background */
-  --accent: #FFCCCC;
 }
 
-/* --- Global Styles --- */
+/* === Global Styles === */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,8 +12,8 @@
 }
 
 body {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   background: var(--background);
   color: var(--primary);
   font-family: 'Arial', sans-serif;
@@ -29,42 +24,38 @@ body {
   position: relative;
 }
 
-/* --- Hero Section --- */
+/* === Hero Section === */
 .hero {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 2rem;
-  position: relative;
   z-index: 2; /* Above backdrop */
+  text-align: center;
 }
 
-/* Logo Styling */
+/* Logo Animation */
 .logo {
-  width: 150px;
+  width: 300px; /* Large logo */
   height: auto;
-  z-index: 2;
-}
-
-/* Hero Text Styling */
-.hero-text span {
-  display: block;
-  font-size: 3rem;
   opacity: 0;
-  animation: fadeInUp 1s forwards;
+  animation: fadeIn 2s forwards;
 }
 
-/* Sequential text delay */
-.hero-text span:nth-child(1) { animation-delay: 0.3s; }
-.hero-text span:nth-child(2) { animation-delay: 0.6s; }
-.hero-text span:nth-child(3) { animation-delay: 0.9s; }
-
-/* Fade + Move Animation */
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-/* --- Animated Liquid Backdrop --- */
+/* Tagline Animation */
+.tagline {
+  font-size: 1.5rem;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  animation-delay: 2s; /* Starts after logo appears */
+}
+
+/* === Canvas Backdrop === */
 #backdrop {
   position: fixed;
   top: 0;
@@ -73,55 +64,4 @@ body {
   height: 100%;
   z-index: 1;
   pointer-events: none;
-}
-
-/* Optional CRT / Moiré Overlay */
-body::after {
-  content: '';
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(255,255,255,0.03) 25%, 
-    transparent 25%, 
-    transparent 50%, 
-    rgba(255,255,255,0.03) 50%, 
-    rgba(255,255,255,0.03) 75%, 
-    transparent 75%, 
-    transparent
-  );
-  background-size: 50px 50px;
-  animation: moireScroll 10s linear infinite;
-  pointer-events: none;
-  z-index: 3; /* Above hero */
-}
-
-@keyframes moireScroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 100px 100px; }
-}
-
-/* --- Optional: Cursor Interactive Liquid Motion --- */
-body {
-  --mouse-x: 0;
-  --mouse-y: 0;
-}
-
-body::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 30%, #FFCCCC55, #000000 70%);
-  background-size: 200% 200%;
-  animation: liquidMove 15s linear infinite alternate;
-  z-index: -1;
-  transform: translate(var(--mouse-x), var(--mouse-y));
-  transition: transform 0.1s ease-out;
-}
-
-@keyframes liquidMove {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 50% 50%; }
-  100% { background-position: 0% 0%; }
 }
