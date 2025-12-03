@@ -1,10 +1,9 @@
-/* === Color Palette === */
+/* --- Global & Colors --- */
 :root {
-  --primary: #FFCCCC; /* Blonde accent */
-  --background: #000000; /* Black background */
+  --primary: #FFCCCC; /* blonde accent */
+  --background: #000000;
 }
 
-/* === Global Styles === */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,37 +12,23 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: var(--background);
   color: var(--primary);
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-/* === Canvas backdrop === */
-#backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* === Hero Section === */
+/* --- Hero Section --- */
 .hero {
-  position: relative;
-  z-index: 2; /* above backdrop */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
   text-align: center;
-  gap: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 /* Logo animation */
@@ -64,10 +49,28 @@ body {
   font-size: 1.5rem;
   opacity: 0;
   animation: fadeInTagline 2s forwards;
-  animation-delay: 2s; /* start after logo */
+  animation-delay: 2s;
 }
 
 @keyframes fadeInTagline {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Scroll Section --- */
+.scroll-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Canvas fills scroll section */
+#crtCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
